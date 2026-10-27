@@ -1,0 +1,82 @@
+.context-menu {
+  position: fixed;
+  z-index: 10000;
+  background: var(--surface-3);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  min-width: 180px;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.menu-header {
+  padding: 6px 10px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-subtle);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-header span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 140px;
+}
+
+.menu-header button {
+  background: none;
+  border: none;
+  color: var(--ink-subtle);
+  cursor: pointer;
+  padding: 2px;
+}
+
+.menu-divider {
+  height: 1px;
+  background: var(--hairline);
+  margin: 4px 0;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: none;
+  background: none;
+  color: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: all 0.1s;
+}
+
+.menu-item:hover {
+  background: var(--surface-4);
+  color: var(--ink);
+}
+
+.menu-item.danger:hover {
+  background: #f85149;
+  color: white;
+}
+
+.menu-item svg {
+  opacity: 0.7;
+}
+
+.menu-item:hover svg {
+  opacity: 1;
+}

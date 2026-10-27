@@ -1,0 +1,113 @@
+.tree-item {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  gap: 6px;
+  cursor: pointer;
+  margin: 1px 6px;
+  padding: 0 8px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink-muted);
+  user-select: none;
+  transition:
+    background 0.1s ease,
+    color 0.1s ease;
+  position: relative;
+}
+
+.tree-item:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.tree-item.selected {
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.tree-item.drag-over {
+  background: var(--surface-3);
+  outline: 1px solid var(--primary);
+  outline-offset: -1px;
+}
+
+.tree-item.dragging {
+  opacity: 0.5;
+}
+
+.item-icon-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  color: var(--ink-subtle);
+  width: 14px;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.tree-item-container .spacer {
+  width: 14px;
+}
+
+.folder-icon {
+  color: var(--ink-subtle);
+  opacity: 0.8;
+}
+
+.folder-icon.open {
+  opacity: 1;
+}
+
+.file-icon {
+  color: var(--ink-muted);
+}
+
+.selected .folder-icon,
+.selected .file-icon,
+.selected .chevron {
+  color: var(--ink);
+}
+
+.item-name {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.name-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.local-indicator {
+  color: var(--semantic-success);
+}
+
+.children {
+  overflow: hidden;
+}
+
+.inline-edit input {
+  background: var(--canvas);
+  border: 1px solid var(--primary-focus);
+  border-radius: var(--radius-xs);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  padding: 2px 4px;
+  width: 80%;
+  outline: none;
+}

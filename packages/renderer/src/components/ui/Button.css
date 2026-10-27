@@ -1,0 +1,47 @@
+.ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  gap: 8px;
+  border: none;
+  outline: none;
+}
+
+.ui-button:active {
+  transform: scale(0.97);
+}
+
+.ui-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Variants */
+.ui-button.primary { background: var(--primary); color: var(--on-primary); }
+.ui-button.primary:hover { background: var(--primary-hover); }
+.ui-button.primary:active { background: var(--primary-focus); }
+
+.ui-button.secondary { 
+  background: var(--surface-1); 
+  color: var(--ink); 
+  border: 1px solid var(--hairline); 
+}
+.ui-button.secondary:hover { background: var(--surface-2); border-color: var(--hairline-strong); }
+
+.ui-button.ghost { color: var(--ink-muted); background: transparent; }
+.ui-button.ghost:hover { color: var(--ink); background: var(--surface-2); }
+
+.ui-button.danger { background: #f85149; color: white; }
+.ui-button.danger:hover { filter: brightness(1.1); box-shadow: 0 4px 12px rgba(248, 81, 73, 0.3); }
+
+/* Sizes */
+.ui-button.sm { height: 28px; padding: 4px 10px; font-size: 13px; }
+.ui-button.md { height: 36px; padding: 8px 14px; font-size: 14px; }
+.ui-button.lg { height: 44px; padding: 12px 24px; font-size: 16px; }
+.ui-button.icon { width: 32px; height: 32px; padding: 0; }

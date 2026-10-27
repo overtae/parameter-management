@@ -1,0 +1,14 @@
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--canvas);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container > .framer-motion-div, /* If using motion.div directly */
+.app-container > div:not(.title-bar) {
+  flex: 1;
+  overflow: hidden;
+}

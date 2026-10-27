@@ -1,0 +1,137 @@
+.setup-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--canvas);
+  padding: 24px;
+}
+
+.setup-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: var(--shadow-lg);
+}
+
+.setup-header {
+  text-align: center;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.setup-header h2 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.6px;
+}
+
+.setup-header p {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.auth-tabs {
+  display: flex;
+  background: var(--canvas);
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 24px;
+  border: 1px solid var(--hairline);
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 6px 14px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-subtle);
+  border-radius: var(--radius-pill);
+}
+
+.auth-tabs button.active {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.4px;
+}
+
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.select-wrapper .icon {
+  position: absolute;
+  left: 12px;
+  color: var(--ink-subtle);
+  pointer-events: none;
+}
+
+select {
+  width: 100%;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 8px 12px 8px 38px;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  outline: 2px solid transparent;
+  outline-offset: -1px;
+  appearance: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select:focus {
+  border-color: var(--primary-focus);
+  outline-color: var(--primary-focus);
+}
+
+.key-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.connect-btn {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.setup-card.in-modal {
+  max-width: none;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.setup-card.in-modal .setup-header {
+  display: none;
+}

@@ -1,0 +1,56 @@
+.title-bar {
+  height: 44px; /* Slightly taller for better touch target */
+  background: var(--canvas);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-app-region: drag; /* Allows window dragging */
+  user-select: none;
+  position: relative;
+  z-index: 9999;
+}
+
+.traffic-light-spacer {
+  width: 80px; /* Space for macOS close/min/max buttons */
+}
+
+.title-text {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-subtle);
+  letter-spacing: 0.4px; /* eyebrow typography style */
+}
+
+.right-spacer {
+  width: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 12px;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+
+/* Ensure interactive elements inside title bar are clickable */
+.title-bar button,
+.title-bar input {
+  -webkit-app-region: no-drag;
+}
+
+.title-bar .icon-btn {
+  color: var(--ink-subtle);
+  background: transparent;
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.title-bar .icon-btn:hover {
+  color: var(--ink);
+  background: var(--surface-1);
+}

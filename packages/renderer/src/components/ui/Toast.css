@@ -1,0 +1,50 @@
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-lg);
+  z-index: 11000;
+  min-width: 300px;
+}
+
+.toast.success svg {
+  color: var(--semantic-success);
+}
+
+.toast.error svg {
+  color: #f85149;
+}
+
+.toast .message {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.toast button {
+  color: var(--ink-subtle);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  transition: all 0.2s;
+}
+
+.toast button:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}

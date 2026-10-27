@@ -1,0 +1,29 @@
+{
+  "name": "@app/main",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@app/preload": "*",
+    "@app/renderer": "*",
+    "@aws-sdk/client-kms": "^3.1045.0",
+    "@aws-sdk/client-ssm": "^3.1045.0",
+    "@aws-sdk/credential-providers": "^3.1045.0",
+    "@aws-sdk/shared-ini-file-loader": "^3.370.0",
+    "electron-updater": "6.8.3"
+  },
+  "devDependencies": {
+    "@app/electron-versions": "*",
+    "electron-devtools-installer": "4.0.0",
+    "typescript": "6.0.2",
+    "vite": "8.0.3"
+  }
+}
