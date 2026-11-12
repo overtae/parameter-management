@@ -18,12 +18,12 @@
     "@aws-sdk/client-ssm": "^3.1045.0",
     "@aws-sdk/credential-providers": "^3.1045.0",
     "@aws-sdk/shared-ini-file-loader": "^3.374.0",
-    "electron-updater": "6.8.3"
+    "electron-updater": "6.8.11"
   },
   "devDependencies": {
     "@app/electron-versions": "*",
     "electron-devtools-installer": "4.0.0",
     "typescript": "6.0.2",
-    "vite": "8.0.3"
+    "vite": "8.1.6"
   }
 }
