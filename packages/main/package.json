@@ -14,7 +14,7 @@
   "dependencies": {
     "@app/preload": "*",
     "@app/renderer": "*",
-    "@aws-sdk/client-kms": "^3.1156.0",
+    "@aws-sdk/client-kms": "^3.1165.0",
     "@aws-sdk/client-ssm": "^3.1045.0",
     "@aws-sdk/credential-providers": "^3.1045.0",
     "@aws-sdk/shared-ini-file-loader": "^3.374.0",
