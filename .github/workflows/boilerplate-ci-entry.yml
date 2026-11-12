@@ -1,7 +1,4 @@
-# This file serves as a boilerplate template rather than an end-application script.
-# The final application is likely to delete this file and use `ci.yml` as the entry point.
-
-name: Run entry ci.yml for each vite starter template
+name: CI
 on:
   workflow_dispatch:
   push:
@@ -27,48 +24,25 @@ permissions:
   contents: write
 
 jobs:
-  run-ci-for-template:
+  ci:
     name: ci.yml
     uses: ./.github/workflows/ci.yml
     with:
-      renderer-template: ${{ matrix.renderer-template }}
-      distribution-channel: ${{ matrix.renderer-template }}
+      # `latest` is electron-updater's default channel; the app looks for latest*.yml.
+      distribution-channel: latest
     permissions:
       contents: write
       id-token: write
       attestations: write
-    strategy:
-      fail-fast: false
-      matrix:
-        renderer-template:
-          - vanilla
-          - vanilla-ts
-          - vue
-          - vue-ts
-          - react
-          - react-ts
-          - react-swc
-          - react-swc-ts
-          - preact
-          - preact-ts
-          - lit
-          - lit-ts
-          - svelte
-          - svelte-ts
-          - solid
-          - solid-ts
-          # - qwik
-          # - qwik-ts
-
 
   dependabot:
     permissions:
       contents: write
       pull-requests: write
     needs:
-      - run-ci-for-template
+      - ci
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'cawa-93/vite-electron-builder'
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'overtae/parameter-management'
     steps:
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --rebase "$PR_URL"

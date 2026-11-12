@@ -1,4 +1,5 @@
 name: Setup boilerplate
+description: Set up Node, create the renderer if missing, and install dependencies
 inputs:
   renderer-template:
     description: Define what vite template should be used to create renderer in case if renderer package doesn't exist
@@ -17,7 +18,9 @@ runs:
 
     - uses: actions/setup-node@v4
       with:
-        node-version: 'latest'
+        # Pinned to LTS: `latest` ships an npm whose allowScripts policy skips
+        # electron's postinstall, leaving node_modules/electron/path.txt missing.
+        node-version: '24'
 
     - name: Check if renderer directory exists
       id: check-renderer
