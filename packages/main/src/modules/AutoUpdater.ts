@@ -45,13 +45,13 @@ export class AutoUpdater implements AppModule {
 
       return await updater.checkForUpdatesAndNotify(this.#notification);
     } catch (error) {
-      if (error instanceof Error) {
-        if (error.message.includes('No published versions')) {
-          return null;
-        }
+      if (error instanceof Error && error.message.includes('No published versions')) {
+        return null;
       }
 
-      throw error;
+      // A failed update check (offline, missing latest*.yml, ...) must not take the app down.
+      (this.#logger ?? console).error('Auto-update check failed:', error);
+      return null;
     }
   }
 }
