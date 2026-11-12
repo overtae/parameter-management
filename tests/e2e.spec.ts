@@ -4,7 +4,6 @@ import {expect, test as base} from '@playwright/test';
 import type {BrowserWindow} from 'electron';
 import {globSync} from 'glob';
 import {platform} from 'node:process';
-import {createHash} from 'node:crypto';
 
 process.env.PLAYWRIGHT_TEST = 'true';
 
@@ -20,12 +19,13 @@ const test = base.extend<TestFixtures>({
     /**
      * Executable path depends on root package name!
      */
-    let executablePattern = 'dist/*/root{,.*}';
+    let executablePattern = 'dist/*/ParameterManagement{,.*}';
     if (platform === 'darwin') {
-      executablePattern += '/Contents/*/root';
+      executablePattern += '/Contents/*/ParameterManagement';
     }
 
-    const [executablePath] = globSync(executablePattern);
+    // Linux executables are lower-cased by electron-builder.
+    const [executablePath] = globSync(executablePattern, {nocase: platform === 'linux'});
     if (!executablePath) {
       throw new Error('App Executable path not found');
     }
@@ -97,70 +97,22 @@ test('Main window state', async ({electronApp, page}) => {
   expect(windowState.isDevToolsOpened, 'The DevTools panel was open').toEqual(false);
 });
 
-test.describe('Main window web content', async () => {
+const EXPOSED_API_METHODS = [
+  'getProfiles',
+  'connect',
+  'getParameters',
+  'saveParameter',
+  'deleteParameter',
+  'getKmsKeys',
+];
 
-  test('The main window has an interactive button', async ({page}) => {
-    const element = page.getByRole('button');
-    await expect(element).toBeVisible();
-    await expect(element).toHaveText('count is 0');
-    await element.click();
-    await expect(element).toHaveText('count is 1');
-  });
-
-  test('The main window has a vite logo', async ({page}) => {
-    const element = page.getByAltText('Vite logo');
-    await expect(element).toBeVisible();
-    await expect(element).toHaveRole('img');
-    const imgState = await element.evaluate((img: HTMLImageElement) => img.complete);
-    const imgNaturalWidth = await element.evaluate((img: HTMLImageElement) => img.naturalWidth);
-
-    expect(imgState).toEqual(true);
-    expect(imgNaturalWidth).toBeGreaterThan(0);
-  });
-});
-
-test.describe('Preload context should be exposed', async () => {
-  test.describe(`versions should be exposed`, async () => {
-    test('with same type`', async ({page}) => {
-      const type = await page.evaluate(() => typeof globalThis[btoa('versions')]);
-      expect(type).toEqual('object');
-    });
-
-    test('with same value', async ({page, electronVersions}) => {
-      const value = await page.evaluate(() => globalThis[btoa('versions')]);
-      expect(value).toEqual(electronVersions);
-    });
-  });
-
-  test.describe(`sha256sum should be exposed`, async () => {
-    test('with same type`', async ({page}) => {
-      const type = await page.evaluate(() => typeof globalThis[btoa('sha256sum')]);
-      expect(type).toEqual('function');
-    });
-
-    test('with same behavior', async ({page}) => {
-      const testString = btoa(`${Date.now() * Math.random()}`);
-      const expectedValue = createHash('sha256').update(testString).digest('hex');
-      const value = await page.evaluate((str) => globalThis[btoa('sha256sum')](str), testString);
-      expect(value).toEqual(expectedValue);
-    });
-  });
-
-  test.describe(`send should be exposed`, async () => {
-    test('with same type`', async ({page}) => {
-      const type = await page.evaluate(() => typeof globalThis[btoa('send')]);
-      expect(type).toEqual('function');
-    });
-
-    test('with same behavior', async ({page, electronApp}) => {
-      await electronApp.evaluate(async ({ipcMain}) => {
-        ipcMain.handle('test', (event, message) => btoa(message));
-      });
-
-      const testString = btoa(`${Date.now() * Math.random()}`);
-      const expectedValue = btoa(testString);
-      const value = await page.evaluate(async (str) => await globalThis[btoa('send')]('test', str), testString);
-      expect(value).toEqual(expectedValue);
-    });
-  });
+test('Preload exposes window.api with all methods', async ({page}) => {
+  const methodTypes = await page.evaluate(
+    (names: string[]) => {
+      const {api} = globalThis as {api?: Record<string, unknown>};
+      return names.map((name: string) => typeof api?.[name]);
+    },
+    EXPOSED_API_METHODS,
+  );
+  expect(methodTypes).toEqual(EXPOSED_API_METHODS.map(() => 'function'));
 });
