@@ -27,7 +27,7 @@
     "init": "npm run create-renderer && npm run integrate-renderer && npm install"
   },
   "devDependencies": {
-    "@npmcli/map-workspaces": "6.0.0",
+    "@npmcli/map-workspaces": "6.0.1",
     "@playwright/test": "1.65.1",
     "@types/node": "26.6.6",
     "create-vite": "9.3.4",
