@@ -15,7 +15,7 @@
     "@app/preload": "*",
     "@app/renderer": "*",
     "@aws-sdk/client-kms": "^3.1175.0",
-    "@aws-sdk/client-ssm": "^3.1174.0",
+    "@aws-sdk/client-ssm": "^3.1175.0",
     "@aws-sdk/credential-providers": "^3.1175.0",
     "@aws-sdk/shared-ini-file-loader": "^3.374.0",
     "electron-updater": "6.8.11"
